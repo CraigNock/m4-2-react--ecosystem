@@ -12,7 +12,7 @@ All routes are defined in the React application.
 import {Route} from 'react-router-dom';
 
 <Route path="/about">
-  <About />
+  <About /> //renders this at that path
 </Route>
 <Route path="/blog">
   <Blog />
@@ -31,6 +31,7 @@ A `<Route>` component consists of at least two things:
 # Why?
 
 Why might we do routing this way, instead of doing it with Express on the back-end?
+//
 
 ---
 
@@ -49,6 +50,8 @@ What gets rendered in the following snippets?
     About
   </Route>
 </div>
+
+//About
 ```
 
 Current URL: http://localhost:3000/about
@@ -67,6 +70,7 @@ Current URL: http://localhost:3000/about
     404 not found
   </Route>
 </div>
+//item detail page
 ```
 
 Current URL: http://localhost:3000/items/abc
@@ -95,7 +99,6 @@ import {
 function App(props) {
   return (
     <Router>
-      <div>
         <Switch>
           <Route exact path="/">
             <Homepage />
@@ -107,12 +110,13 @@ function App(props) {
             <ErrorPage />
           </Route>
         </Switch>
-      </div>
     </Router>
   )
 }
 
 export default App;
+
+//switch saves us having to exact={true}. 
 ```
 
 ---
@@ -127,6 +131,8 @@ import { Link } from 'react-router-dom';
 <Link to="/shop/abc123">
   View item details
 </Link>
+
+
 ```
 
 ---
@@ -134,13 +140,14 @@ import { Link } from 'react-router-dom';
 # Question
 
 Why use `<Link to="...">` instead of `<a href="...">`?
-
+//an <a'> tag reloads everything, link allows us to keep everything (state)
 ---
 
 # Question
 
 Is this "real" navigation?
 
+sure
 ---
 
 ### Accessing URL params
@@ -174,6 +181,7 @@ const ItemDetails = () => {
   // `useParams` is the hook.
   // Hooks always start with `use`.
   const {itemId} = useParams();
+  // const itemId = useParams().itemId; (deconstructed)
 
   return <h3>Item ID: {itemId}</h3>
 };
