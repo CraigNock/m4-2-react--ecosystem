@@ -6,7 +6,7 @@
 
 ---
 
-In React, components can't return multiple elements:
+In React, components **can't return multiple elements**:
 
 ```jsx
 import React from 'react';
@@ -69,6 +69,7 @@ const App = ({ user, data }) => {
     </>
   )
 }
+//the fragment tags won't be in the dom
 ```
 
 ---

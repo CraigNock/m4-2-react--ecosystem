@@ -68,11 +68,13 @@ Fix them, if incorrect
 const data = { hi: 5 };
 
 export default data;
+
 ```
 
 ```js
 // src/index.js
 import theBestData from './data';
+//fine
 ```
 
 ---
@@ -80,11 +82,13 @@ import theBestData from './data';
 ```js
 // src/data.js
 export const MAGIC_NUMBER = 123;
+
 ```
 
 ```js
 // src/index.js
 import MAGIC_NUMBER from './data';
+////not default, so needs {MAGIC_NUMBER}
 ```
 
 ---
@@ -97,11 +101,25 @@ export const sessions = [];
 const data = { users, sessions };
 
 export default data;
+//1 way too much exporting
+const users = [];
+const sessions = [];
+
+const data = { users, sessions };
+
+export default data;
+//2 or (match below)
+export const users = [];
+export const sessions = [];
 ```
 
 ```js
 // src/index.js
 import {data, users} from './data';
+//1 just: 
+import data from './data';
+//2 or (match above)
+import {users} from './data';
 ```
 
 ---
@@ -109,6 +127,11 @@ import {data, users} from './data';
 ```js
 // src/data.js
 export default const baseball = '⚾️';
+//can't define as you export
+const baseball = '⚾️';
+export default baseball;
+//or technically
+export default '⚾️' ///but don't do this
 
 ```
 

@@ -8,9 +8,12 @@
 ---
 
 ```jsx
+//this is a built in module that must be installed
 import styled from 'styled-components';
 
-const Button = styled.button`
+
+//putting styled in front is good practice to differentiate
+const StyledButton = styled.button`
   background: blueviolet;
   border: none;
   padding: 16px 32px;
@@ -20,7 +23,7 @@ const Button = styled.button`
 `;
 
 ReactDOM.render(
-  <Button>Hello World</Button>,
+  <StyledButton>Hello World</Button>,
   document.querySelector('#root')
 );
 ```
@@ -83,6 +86,8 @@ render(<Button>Hello world</Button>)
 
 Why would we do this, instead of having external stylesheets?
 
+//able to use props, reusable, sass power,
+
 ---
 
 # Exercise:
@@ -108,6 +113,20 @@ function App(props) {
     </div>
   )
 }
+//
+import styled from 'styled-components';
+
+const StyledWrapper = styled.div`
+  margin: 0 auto;
+  height: 300px;
+`;
+
+function App(props) {
+  return (
+    <StyledWrapper>Hello World</StyledWrapper>
+  )
+}
+
 ```
 
 ---
@@ -141,6 +160,38 @@ function IconButton(props) {
       </i>
       {props.children}
     </button>
+  )
+}
+//
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  color: tomato;
+  font-weight: bold;
+  padding: 20px;
+
+  &:hover, &:focus {
+    transform: translateY(-3px);
+  }
+  .icon { ${/*or target i tag and lose the className*/}
+    width: 32px;
+    height: 32px;
+  }
+`;
+//ooorrr do this:   (and change html obviously)
+// const StyledIcon = styled.icon`
+//   width: 32px;
+//   height: 32px;
+// `;
+
+function IconButton(props) {
+  return (
+    <StyledButton>
+      <i className="icon">
+        {props.icon}
+      </i>
+      {props.children}
+    </StyledButton>
   )
 }
 ```
